@@ -158,21 +158,55 @@ class HomeHeaderView: UICollectionReusableView {
     lazy var goodBanner: UIView = {
         let view = UIView(frame: CGRect(x: 0, y: msgBanner.frame.origin.y + msgBanner.frame.height, width: bounds.width, height: 130))
         view.backgroundColor = UIColor(red: 0.92, green: 0.92, blue: 0.92, alpha: 1)
-        let lab = UILabel(frame: CGRect(x: 10, y: 25, width: 80, height: 60))
+        let lab = UILabel(frame: CGRect(x: 10, y: 40, width: 80, height: 50))
         lab.text = "商品\n排行"
         lab.numberOfLines = 0
         lab.textColor = UIColor(red: 0.15, green: 0.15, blue: 0.15, alpha: 1)
         lab.font = UIFont.boldSystemFont(ofSize: 20)
         view.addSubview(lab)
-        let jt = UILabel(frame: CGRect(x: 10, y: lab.frame.origin.y + lab.frame.height, width: 50, height: 25))
+        let jtView = UIView(frame: CGRect(x: 10, y: lab.frame.origin.y + lab.frame.height, width: 40, height: 20))
+        jtView.gradientColor(CGPoint(x: 0, y: 0), CGPoint(x: 1, y: 0), [UIColor(red: 1, green: 0.65, blue: 0.31, alpha: 1).cgColor, UIColor(red: 1, green: 0.84, blue: 0, alpha: 0.5).cgColor], CGRect(x: 0, y: 0, width: jtView.frame.width, height: jtView.frame.size.height))
+        jtView.layer.cornerRadius = jtView.frame.height/2
+        jtView.layer.masksToBounds = true
+        view.addSubview(jtView)
+        let jt = UILabel(frame: jtView.bounds)
+        jt.font = UIFont.systemFont(ofSize: 14)
         jt.textAlignment = .center
         jt.text = ">>"
         jt.textColor = UIColor.white
-        jt.gradientColor(CGPoint(x: 0, y: 0), CGPoint(x: 1, y: 0), [UIColor(red: 1, green: 0.75, blue: 0.14, alpha: 1), UIColor(red: 1, green: 0.84, blue: 0, alpha: 0.5).cgColor], CGRect(x: 0, y: 0, width: jt.frame.width, height: jt.frame.size.height))
-        jt.layer.cornerRadius = jt.frame.height/2
-        view.addSubview(jt)
+        jtView.addSubview(jt)
+        for i in 0..<3 {
+            let goodView = UIView(frame: CGRect(x: 70 + 15 * CGFloat(i), y: 10, width: view.frame.width - 120, height: view.frame.height - 30))
+            goodView.backgroundColor = .white
+            goodView.transform = CGAffineTransform(scaleX: 1.0 - 0.2 *  CGFloat(i) , y: 1.0 - 0.2 *  CGFloat(i))
+            view.addSubview(goodView)
+            let lab = UILabel(frame: CGRect(x: 15, y: 15, width: 60, height: 20))
+            lab.layer.cornerRadius = lab.frame.height/2
+            lab.layer.masksToBounds = true
+            lab.backgroundColor = UIColor.red
+            lab.text = "热销产品"
+            lab.textAlignment = .center
+            lab.textColor = UIColor.white
+            lab.font = UIFont.systemFont(ofSize: 12)
+            goodView.addSubview(lab)
+            let title = UILabel(frame: CGRect(x: lab.frame.origin.x, y: lab.frame.origin.y + lab.frame.height + 10, width: view.frame.width - 100, height: 13))
+            title.text = "这是产品的名称"
+            title.font = UIFont.systemFont(ofSize: 13)
+            title.textColor = .black
+            goodView.addSubview(title)
+            let money = UILabel(frame: CGRect(x: lab.frame.origin.x, y: title.frame.origin.y + title.frame.height + 10, width: title.frame.width, height: 12))
+            money.text = "¥1999.00"
+            money.textColor = UIColor.gray
+            money.font = UIFont.systemFont(ofSize: 12)
+            goodView.addSubview(money)
+            let img = UIImageView(frame: CGRect(x: view.frame.width - 85, y: 15, width: 70, height: 70))
+            img.image = UIImage(named: "banner")
+            img.contentMode = .scaleAspectFit
+            goodView.addSubview(img)
+        }
         return view
     }()
+    
     lazy var imgView: UIView = {
         let view = UIView(frame: CGRect(x: 0, y: goodBanner.frame.origin.y + goodBanner.frame.height, width: bounds.width, height: 180))
         view.backgroundColor = .clear
