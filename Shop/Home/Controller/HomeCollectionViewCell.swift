@@ -34,27 +34,27 @@ class HomeCollectionViewCell: UICollectionViewCell {
     }
     
     lazy var img: UIImageView = {
-        let image = UIImageView(frame: CGRect(x: 0, y: 0, width: self.bounds.width, height: self.bounds.height))
-        image.contentMode = .scaleAspectFill
+        let image = UIImageView(frame: CGRect(x: 0, y: 0, width: self.bounds.width, height: self.bounds.width))
+        image.contentMode = .scaleAspectFit
         return image
     }()
     
     lazy var title: UILabel = {
-        let lab = UILabel(frame: CGRect(x: 15, y: img.frame.height + 15, width: bounds.width - 30, height: 15))
+        let lab = UILabel(frame: CGRect(x: 10, y: img.frame.height + 10, width: bounds.width - 20, height: 15))
         lab.font = UIFont.boldSystemFont(ofSize: 15)
         lab.textColor = UIColor.black
         return lab
     }()
     
     lazy var money: UILabel = {
-        let lab = UILabel(frame: CGRect(x: title.frame.origin.x, y: title.frame.origin.y + title.frame.height + 15, width: title.frame.width, height: 20))
+        let lab = UILabel(frame: CGRect(x: title.frame.origin.x, y: title.frame.origin.y + title.frame.height + 5, width: title.frame.width, height: 20))
         lab.font = UIFont.systemFont(ofSize: 15)
-        lab.textColor = UIColor.orange
+        lab.textColor = UIColor.red
         return lab
     }()
     lazy var line: UILabel = {
         let lab = UILabel(frame: CGRect(x: 0, y: bounds.height - 0.5, width: bounds.width, height: 0.5))
-        lab.backgroundColor = UIColor.darkGray
+        lab.backgroundColor = UIColor.gray.withAlphaComponent(0.5)
         return lab
     }()
     
